@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SpaceX Launch Programs</title>
+<script src="./js/dumplist.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+* {
+  box-sizing: border-box;
+  font-family: Verdana, Helvetica, sans-serif;
+}
+
+#main {
+	background-color:#f1f1f1;
+	padding:10px 10px 10px 10px;
+}
+.inner-main {
+	display:flex;
+	min-height: 650px;
+}
+.right-inner {
+	width: 82%;
+	margin: 0 0px 0px 15px;
+}
+.filter {
+	width: 18%;
+    background-color: #fff;
+    padding: 20px 0px;
+    max-height: 660px;
+	margin: 0px 0px 0px 10px;
+}
+.filter div {
+ text-align: center;
+}
+.filter .filter-btn:hover {
+	color:#ffc9c9;
+}
+
+.filter-btn {
+	background-color: #46a049;
+	color: #FFFFFF;
+	border-radius: 6px; 
+	padding: 5px 20px;
+	text-align: center;
+	margin: 10px;
+	display: inline-flex;
+	cursor: pointer;
+	-webkit-touch-callout: none;
+    -webkit-user-select: none; 
+     -khtml-user-select: none; 
+       -moz-user-select: none; 
+        -ms-user-select: none;
+            user-select: none;
+}
+.filter-btn.highlight {
+	background-color: #104111;
+}
+
+.space-holder {
+	display: inline-flex;
+    width: 278px;
+    background-color: #fff;
+    padding: 0px;
+    height: 440px;
+    margin: 0px 10px 10px 10px;
+	font-size: 13px;
+}
+.space-holder .space-inner {
+	padding: 15px 15px;
+}
+.bg-img-holder {
+	width: 248px;
+	height: 180px;
+	background: #DDD;
+	padding: 0px 15px 0px 15px;
+	text-align: center;
+}
+.bg-img {
+	width: 180px;
+	height: 180px;
+}
+.space-holder p, .space-holder ul, .space-holder li {
+	margin: 5px 0px;
+}
+.filter p {
+	/* text-decoration: underline;
+	text-decoration-color: #bebbbb; */
+	margin: 15px 10px 0px 10px;
+    border-bottom: 2px solid #bebbbb;
+    line-height: 20px;
+}
+.paragraph-flex {
+	display: flex;
+}
+.paragraph-flex p:first-child {
+	width: 65%;
+}
+.paragraph-flex p:last-child {
+	width: 35%;
+	line-height: 30px;
+	text-transform: capitalize;
+}
+.mission-name {
+	color: #0a7bef;
+    font-weight: 600;
+    font-size: 16px;
+	padding-top: 5px;
+}
+.mission-id {
+	padding-top: 5px;
+	font-weight: 600;
+	font-size: 14px;
+}
+.space-inner ul {
+	color: #0a7bef;
+	margin-bottom: 12px;
+}
+.space-inner strong {
+	font-size: 14px;
+}
+.space-inner span {
+	color: #0a7bef;
+}
+.author {
+	background-color:#f1f1f1;
+	text-align:center;padding:10px;
+	margin-top:7px;
+	font-size:13px;
+	color: #333;
+	font-weight: bold;
+}
+/* tablet devices */
+@media only screen and (min-width:700px) and (max-width:1025px) {
+.filter {
+    width: 26%;
+    padding: 10px 5px;
+    max-height: 720px;
+}
+.right-inner {
+    width: 74%;
+    margin: 0 10px;
+}
+.space-holder {
+    width: 45%;
+
+}
+.space-holder .space-inner {
+    padding: 10px 10px;
+	width: 100%;
+}
+.bg-img-holder {
+    width: 100%;
+}
+
+}
+/* mobile devices */
+@media only screen and (max-width:699px) {
+	body {
+		background-color: #f1f1f1;
+	}
+	.inner-main {
+		display: block;
+	}
+	.filter {
+		width: 100%;
+		margin: 
+	}
+	.right-inner {
+		width: 80%;
+		margin: 0 10%;
+	}
+	.space-holder {
+		margin: 10px 0px;
+		width: 100%;
+	}
+.space-holder .space-inner {
+    padding: 10px 10%;
+	width: 100%;
+}
+.bg-img-holder {
+    width: 100%;
+}
+
+}
+
+.loader {
+  border: 5px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 5px solid #3498db;
+  width: 50px;
+  height: 50px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+  text-align: center;
+    margin: 0 auto;
+    margin-top: 200px;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.loader-text {
+	text-align: center;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+</style>
+</head>
+<body style="font-family:Verdana;">
+
+<div id="main">
+  <h1 id="header">SpaceX Launch Programs</h1>
+  <div class="inner-main">
+	<div class="left-inner filter">
+		<h3>Filters</h3>
+	</div>
+	
+	<section class="right-inner">	
+		<div class="loader"></div>
+		<p class="loader-text"> Loading... </p>
+	</section>
+  </div>
+</div>
+
+
+<div class="author"> 
+Developed by: Gurumoorthy L
+</div>
+</body>
+<script>
+//var initAppMain = () => {
+
+var disableHighLighter = (id) => {
+	console.log('disableHighLighter: '+id);
+	let elems = document.querySelectorAll('#'+id+' .filter-btn');
+	elems.forEach(function(ele, index) {
+		ele.classList.remove('highlight');
+	});
+	return null;
+};
+
+var addClickListener = () => {
+	let btns = document.querySelectorAll('.filter-btn');
+	btns.forEach((ele, index) => {
+		ele.addEventListener('click', clickFilterHandler, false);
+	});
+	return null;
+}
+
+var removeClickListener = () => {
+	let btns = document.querySelectorAll('.filter-btn');
+	btns.forEach((ele, index) => {
+		ele.removeEventListener('click', clickFilterHandler, false);
+	});
+	return null;
+}
+
+var getSelectedItems = () => {
+	let txt1='', txt2='', txt3 = '';
+	if(document.querySelector('#btns-sec-2 .highlight')){txt1='&launch_success='+document.querySelector('#btns-sec-2 .highlight').textContent.toLowerCase().trim();}
+	if(document.querySelector('#btns-sec-3 .highlight')){txt2='&land_success='+document.querySelector('#btns-sec-3 .highlight').textContent.toLowerCase().trim();}
+	if(document.querySelector('#btns-sec-1 .highlight')){txt3 = '&launch_year='+document.querySelector('#btns-sec-1 .highlight').textContent.toLowerCase().trim();}
+	let txt = 'https://api.spaceXdata.com/v3/launches?limit=100'+txt1+txt2+txt3;
+	console.log('txt: '+txt);
+	return txt;	
+}
+
+var clickFilterHandler = (evt) => {
+	document.querySelector('.right-inner').innerHTML = '<div class="loader"></div><p class="loader-text"> Loading... </p>';
+	let ele = evt.target;
+	if(ele.getAttribute('class').includes('highlight')) {
+		ele.classList.toggle('highlight');
+	} else {
+		if(ele.closest('.btns-sec').id.includes('btns-sec')) {
+			disableHighLighter(ele.closest('.btns-sec').id);
+		}
+		ele.classList.toggle('highlight');
+	}
+
+	let txt1='', txt2='', txt3= '';
+	if(document.querySelector('#btns-sec-2 .highlight')){txt1='&launch_success='+document.querySelector('#btns-sec-2 .highlight').textContent.toLowerCase().trim();}
+	if(document.querySelector('#btns-sec-3 .highlight')){txt2='&land_success='+document.querySelector('#btns-sec-3 .highlight').textContent.toLowerCase().trim();}
+	if(document.querySelector('#btns-sec-1 .highlight')){txt3 = '&launch_year='+document.querySelector('#btns-sec-1 .highlight').textContent.toLowerCase().trim();}
+	let link_url = 'https://api.spaceXdata.com/v3/launches?limit=100'+txt1+txt2+txt3;
+	console.log('link_url: '+link_url);
+	
+	history.pushState('', '', '?limit=100'+txt1+txt2+txt3);
+	sessionStorage.setItem('refresh_link', (txt1+txt2+txt3));
+	spaceDataRequester({url: link_url, method:'GET'})
+    .then(data => {
+        let spacedata = JSON.parse(data);
+		spaceContetnLoader(spacedata);
+    })
+    .catch(error => {
+		console.log('catch falling');
+		if(link_url === 'https://api.spaceXdata.com/v3/launches?limit=100') {
+			spaceContetnLoader(dump_List);
+		} else {
+			window.temp_List = [];
+			/* let launch_year = '2014';
+			let launch_success = 'true';
+			let land_success = '';	*/
+			let launch_year = '';
+			let launch_success = '';
+			let land_success = '';
+			
+			if(txt3.includes('&launch_year=')) {
+				launch_year = txt3.split('&launch_year=')[1];
+			}
+			if(txt2.includes('&land_success=')) {
+				land_success = txt2.split('&land_success=')[1];
+			}
+			if(txt1.includes('&launch_success=')) {
+				launch_success = txt1.split('&launch_success=')[1];
+			}
+console.log('launch_success: '+launch_success);
+console.log('land_success: '+land_success);
+dump_List.forEach((item, indx) => {
+	if(launch_year===item.launch_year && launch_success===String(item.launch_success) && land_success===String(item.rocket.first_stage.cores[item.rocket.first_stage.cores.length-1].land_success)) {
+		temp_List.push(item);
+	} else if(launch_year===''&&launch_success===String(item.launch_success)&&land_success===String(item.rocket.first_stage.cores[item.rocket.first_stage.cores.length-1].land_success)) {
+		temp_List.push(item);
+	} else if(launch_year===item.launch_year && launch_success==='' && land_success===String(item.rocket.first_stage.cores[item.rocket.first_stage.cores.length-1].land_success)) {
+		temp_List.push(item);
+	} else if(launch_year===item.launch_year && launch_success===String(item.launch_success) && land_success==='') {
+		temp_List.push(item);
+	} else if(launch_year===item.launch_year && launch_success==='' && land_success==='') {
+		temp_List.push(item);
+	} else if(launch_year==='' && launch_success==='' && land_success===String(item.rocket.first_stage.cores[item.rocket.first_stage.cores.length-1].land_success)) {
+		temp_List.push(item);
+	}
+});		
+			spaceContetnLoader(temp_List);	
+			//temp_List.filter((v,i,a)=>a.findIndex(t=>(JSON.stringify(t) === JSON.stringify(v)))===i)
+		}
+		
+    });
+	return null;
+}
+
+var addAllButtons = () => {
+	let btnsTxt = [['Launch Year','2006','2007','2008','2009','2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020'], ['Successful Launch','True','False'], ['Successful Landing','True','False']];
+	let html = '';
+	btnsTxt.forEach(function(items, index) {
+		//console.log('index'+index);
+		items.forEach(function(item, indx) {
+			if(indx===0) {
+				html += '<div id="btns-sec-'+(index+1)+'" class="btns-sec">'+
+					'<p>'+ item +'</p>';
+			} else {
+				html  += '<div class="filter-btn">'+ item +'</div>';
+			}			
+		});
+		html += '</div>'; 
+	});
+	//console.log(html);
+	document.querySelector('.filter').innerHTML = html;	
+	return null;
+}
+//add all buttons on the page - Buttons for Year, Success Launch, Successful Landing
+var spaceDataRequester = obj => {
+    return new Promise((resolve, reject) => {
+        let xhr = new XMLHttpRequest();
+        xhr.open(obj.method || 'GET', obj.url);
+        /* if (obj.headers) {
+            Object.keys(obj.headers).forEach(key => {
+                xhr.setRequestHeader(key, obj.headers[key]);
+            });
+        } */
+        xhr.onload = () => {
+            if (xhr.status >= 200 && xhr.status < 300) {
+                resolve(xhr.response);
+            } else {
+                reject(xhr.statusText);
+            }
+        };
+        xhr.onerror = () => {
+			console.log(xhr.statusText); 
+			reject(xhr.statusText)
+		};
+        xhr.send();
+    });
+};
+
+
+var addMissionIds = (missionId) => {
+	let html = '';
+	//console.log('missionId: '+missionId[0]);
+	if(missionId.length===0) {
+		return 'Not specified';
+	}
+	if(missionId.length>1) {	
+		missionId.forEach((id, indx) => {
+			console.log(id, indx);
+			html += '<li class="mission-id-list">'+ id +'</li>';
+		});
+	} else {
+		html += '<li class="mission-id-list">'+ missionId +'</li>';
+	}
+	return html;
+}
+
+var spaceContetnLoader = (jetdata) => {
+	let html = '';
+	if(jetdata.length===0) {
+		html += '<div class="filter-no-matching">No SpaceX Launch Programs availabe in this search criteria.</div>'
+		document.querySelector('section.right-inner').innerHTML = html;
+		return null;
+	}
+	
+	jetdata.forEach((data) => {
+		//console.log('data: '+data.mission_name);
+		//console.log('data: '+data.mission_id.length);
+		
+		html += '<div class="space-holder">'+
+			'<div class="space-inner">'+
+				'<a href="'+ data.links.article_link +'" target="_blank">'+
+					'<div class="bg-img-holder">'+
+						'<img class="bg-img" src="'+(data.links.mission_patch_small || './images/image-not-available.jpg')+'"/>'+
+					'</div>'+
+				'</a>'+
+				'<p class="mission-name">'+ data.mission_name + ' #'+ data.flight_number +'</p>'+
+				'<p class="mission-id">Mission ids: </p>'+
+				'<ul>'+addMissionIds(data.mission_id)+
+				'</ul>'+
+				'<p><strong>Launch Year:</strong> <span>'+ data.launch_year +'</span></p>'+
+				'<div class="paragraph-flex">'+
+					'<p><strong>Successful <br>Launch:</strong></p>'+
+					'<p><span>'+(data.launch_success || 'N/A')+'</span></p>'+
+				'</div>'+
+				'<div class="paragraph-flex">'+
+					'<p><strong>Successful <br>Landing:</strong> </p>'+
+					'<p><span>'+data.rocket.first_stage.cores[data.rocket.first_stage.cores.length-1].land_success+'</span></p>'+
+				'</div>'+
+			'</div>'+
+		'</div>';
+	});
+	//console.log(html);
+	document.querySelector('section.right-inner').innerHTML = html;
+	addClickListener();
+}
+
+var defaultHighLighter = (urlInit) => {
+	if(!location.href.includes('launch_year') || !location.href.includes('launch_success') || !location.href.includes('land_success')) {
+		sessionStorage.removeItem('refresh_link');
+		return null;
+	}
+	var urlInit = 'https://api.spaceXdata.com/v3/launches?limit=100';
+	if(sessionStorage.getItem('refresh_link')) {
+		urlInit += sessionStorage.getItem('refresh_link');
+	}
+	console.log('urlInit: '+urlInit);
+	let launch_year;
+	let launch_success;
+	let land_success;
+	if(urlInit.includes('&launch_year=')) {
+		launch_year = urlInit.split('&launch_year=')[1];
+	} 
+	if(urlInit.includes('&launch_success=')) {
+		launch_success = urlInit.split('&launch_success=')[1];
+	}
+	if(urlInit.includes('&land_success=')) {
+		console.log('urlInit: '+urlInit);
+		land_success = urlInit.split('&land_success=')[1];
+		console.log('land_success: '+land_success);
+	}
+	let btnsYear = document.querySelectorAll('#btns-sec-1 .filter-btn');
+	let btnsLaunch = document.querySelectorAll('#btns-sec-2 .filter-btn');
+	let btnsLand = document.querySelectorAll('#btns-sec-3 .filter-btn');
+	btnsYear.forEach((item, indx)=> {
+		if(launch_year && item.textContent.toLowerCase() === launch_year) item.classList.add('highlight');
+	});
+	btnsLaunch.forEach((item, indx)=> {
+		if(launch_success && launch_success.includes(item.textContent.toLowerCase())) item.classList.add('highlight');
+	});
+	btnsLand.forEach((item, indx)=> {
+		if(land_success && land_success.includes(item.textContent.toLowerCase())) item.classList.add('highlight');
+	});
+	return null;
+}
+var urlInit = 'https://api.spaceXdata.com/v3/launches?limit=100';
+spaceDataRequester({url: urlInit, method:'GET'})
+    .then(data => {
+        let spacedata = JSON.parse(data);
+		console.log('spacedata: '+spacedata);
+		//console.log('spacedata: '+spacedata[0].mission_name);
+		spaceContetnLoader(spacedata);
+    })
+    .catch(error => {
+        //console.log('error: '+error);
+		console.log('catch falling');
+		spaceContetnLoader(dump_List);
+    });
+	
+	addAllButtons();
+	defaultHighLighter();
+	
+//}; initAppMain();
+</script>
+</html>
