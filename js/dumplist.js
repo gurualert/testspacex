@@ -1,3 +1,4 @@
+/* The failure of network the dump data will load on the page */
 window.dump_List = [{
     "flight_number": 1,
     "mission_name": "FalconSat",
